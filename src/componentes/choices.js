@@ -1,5 +1,6 @@
 import React from "react";
 
+
 function Choices({ onChoiceClick }) {
   return (
     <div className="options">

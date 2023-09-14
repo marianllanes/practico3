@@ -29,6 +29,8 @@ class App extends Component {
     const cpuChoice = Math.floor(Math.random() * 3);
     const cpuChoiceLabel = ["piedra", "papel", "tijera"][cpuChoice];
 
+//Determinación del ganador 
+
     let resultMessage = "";
     if (choice === cpuChoiceLabel) {
       resultMessage = "Empate! Vuelve a intentarlo";
@@ -41,6 +43,8 @@ class App extends Component {
     } else {
       resultMessage = "Perdiste! Gana la Computadora";
     }
+
+   // Actualización del marcador
 
     const newPlayerScore =
       resultMessage === "Ganaste! Felicitaciones" ? playerScore + 1 : playerScore;

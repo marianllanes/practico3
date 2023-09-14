@@ -15,3 +15,4 @@ function PlayerInfo({ playerName, onPlayerNameChange }) {
 }
 
 export default PlayerInfo;
+

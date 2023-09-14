@@ -1,7 +1,7 @@
 // 
 
 import React, { Component } from "react";
-import PlayerInfo from "./componentes/playerInfo";
+//import PlayerInfo from "./componentes/playerInfo";
 import Choices from "./componentes/choices";
 import Results from "./componentes/results";
 import "./App.css";
@@ -18,9 +18,10 @@ class App extends Component {
     };
   }
 
-  handlePlayerNameChange = (name) => {
-    this.setState({ playerName: name });
+  handleNameChange = (event) => {
+    this.setState({ playerName: event.target.value });
   };
+
 
   handleChoiceClick = (choice) => {
     const { playerScore, cpuScore, roundsPlayed } = this.state;
@@ -77,10 +78,21 @@ class App extends Component {
     return (
       <div className="container">
         <h1>Juego de Piedra, Papel o Tijera</h1>
-        <PlayerInfo
-          playerName={playerName}
-          onPlayerNameChange={this.handlePlayerNameChange}
-        />
+        
+        {/* Formulario para obtener el nombre del jugador */}
+        <form>
+          <div className="player-info">
+            <label htmlFor="playerName">Ingrese su nombre: </label>
+            <input
+              type="text"
+              id="playerName"
+              value={playerName}
+              onChange={this.handleNameChange} // Asigna el manejador de cambio
+            />
+          </div>
+        </form>
+        
+        {/* Resto de los componentes */}
         <Choices onChoiceClick={this.handleChoiceClick} />
         <Results
           playerScore={playerScore}

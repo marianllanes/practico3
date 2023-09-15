@@ -5,6 +5,36 @@ import React, { Component } from "react";
 import Choices from "./componentes/choices";
 import Results from "./componentes/results";
 import "./App.css";
+import styled from "styled-components";
+
+
+const Container = styled.div`
+  text-align: center;
+  background-color: #e06c29;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+`;
+
+const Title = styled.h1`
+  margin-bottom: 20px;
+`;
+
+const PlayerInfoContainer = styled.div`
+  margin-bottom: 10px;
+`;
+
+const PlayerNameLabel = styled.label`
+  display: block;
+  margin-bottom: 5px;
+`;
+
+const PlayerNameInput = styled.input`
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+`;
+
 
 class App extends Component {
   constructor(props) {
@@ -105,6 +135,8 @@ class App extends Component {
     });
   };
 
+
+  
   render() {
     const {
       playerName,
@@ -116,23 +148,19 @@ class App extends Component {
     } = this.state;
 
     return (
-      <div className="container">
-        <h1>Juego de Piedra, Papel o Tijera</h1>
-        
-        {/* Formulario para obtener el nombre del jugador */}
+      <Container>
+        <Title>Juego de Piedra, Papel o Tijera</Title>
         <form>
-          <div className="player-info">
-            <label htmlFor="playerName">Ingrese su nombre: </label>
-            <input
+          <PlayerInfoContainer>
+            <PlayerNameLabel htmlFor="playerName">Ingrese su nombre:</PlayerNameLabel>
+            <PlayerNameInput
               type="text"
               id="playerName"
               value={playerName}
-              onChange={this.handleNameChange} // Asigna el manejador de cambio
+              onChange={this.handleNameChange}
             />
-          </div>
+          </PlayerInfoContainer>
         </form>
-        
-        {/* Resto de los componentes */}
         <Choices onChoiceClick={this.handleChoiceClick} />
         <Results
           playerScore={playerScore}
@@ -141,13 +169,12 @@ class App extends Component {
           resultMessage={resultMessage}
           onResetClick={this.handleResetClick}
         />
-          {/* Mensaje del ganador cuando el juego ha finalizado */}
-          {gameOver && (
+        {gameOver && (
           <div className="game-over">
             <h2>{resultMessage}</h2>
           </div>
         )}
-      </div>
+      </Container>
     );
   }
 }

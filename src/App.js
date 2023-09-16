@@ -1,13 +1,11 @@
 // 
 
 import React, { Component } from "react";
-//import PlayerInfo from "./componentes/playerInfo";
-import Choices from "./componentes/choices";
-import Results from "./componentes/results";
-import "./App.css";
+import Choices from "./componentes/Choices";
+import Results from "./componentes/Results";
 import styled from "styled-components";
 
-
+// Estilos con Styled Components
 const Container = styled.div`
   text-align: center;
   background-color: #e06c29;
@@ -40,21 +38,21 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerName: "",
-      playerScore: 0,
-      cpuScore: 0,
-      roundsPlayed: 0,
-      resultMessage: "",
-      attempts: 0, // Contador de intentos
-      gameOver: false, // Estado del juego
+      playerName: "",   // Nombre del jugador
+      playerScore: 0,   // Puntuación del jugador
+      cpuScore: 0,      // Puntuación de la CPU
+      roundsPlayed: 0,   // Rondas jugadas
+      resultMessage: "",   // Mensaje del resultado
+      attempts: 0,   // Contador de intentos
+      gameOver: false,   // Estado del juego
     };
   }
-
+// Maneja el cambio de nombre del jugador
   handleNameChange = (event) => {
     this.setState({ playerName: event.target.value });
   };
 
-
+// Maneja el clic en una opción del juego
   handleChoiceClick = (choice) => {
     const { 
       playerScore,
@@ -123,6 +121,7 @@ class App extends Component {
     });
   };
 
+  // Maneja el clic en el botón de reinicio
   handleResetClick = () => {
     this.setState({
       playerName: "",
@@ -151,6 +150,7 @@ class App extends Component {
       <Container>
         <Title>Juego de Piedra, Papel o Tijera</Title>
         <form>
+        {/* Contenedor del nombre del jugador */}
           <PlayerInfoContainer>
             <PlayerNameLabel htmlFor="playerName">Ingrese su nombre:</PlayerNameLabel>
             <PlayerNameInput
@@ -161,7 +161,9 @@ class App extends Component {
             />
           </PlayerInfoContainer>
         </form>
+         {/* Componente de opciones de juego */}
         <Choices onChoiceClick={this.handleChoiceClick} />
+         {/* Componente de resultados */}
         <Results
           playerScore={playerScore}
           cpuScore={cpuScore}
@@ -169,6 +171,7 @@ class App extends Component {
           resultMessage={resultMessage}
           onResetClick={this.handleResetClick}
         />
+         {/* Mostrar mensaje de juego terminado si gameOver es verdadero */}
         {gameOver && (
           <div className="game-over">
             <h2>{resultMessage}</h2>
